@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B57A6BC419D8F36600AA1D1A /* CNPPopupTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = B57A6BC319D8F36600AA1D1A /* CNPPopupTheme.m */; };
 		B58F861319D858730044BACB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B58F861219D858730044BACB /* main.m */; };
 		B58F861619D858730044BACB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B58F861519D858730044BACB /* AppDelegate.m */; };
 		B58F861919D858730044BACB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B58F861819D858730044BACB /* ViewController.m */; };
@@ -14,6 +15,7 @@
 		B58F861E19D858730044BACB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58F861D19D858730044BACB /* Images.xcassets */; };
 		B58F862119D858730044BACB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B58F861F19D858730044BACB /* LaunchScreen.xib */; };
 		B58F862D19D858730044BACB /* CNPPopupControllerExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B58F862C19D858730044BACB /* CNPPopupControllerExampleTests.m */; };
+		B5D3A81C19D85A5A0001B05D /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D3A81B19D85A5A0001B05D /* CNPPopupController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B57A6BC219D8F36600AA1D1A /* CNPPopupTheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupTheme.h; sourceTree = "<group>"; };
+		B57A6BC319D8F36600AA1D1A /* CNPPopupTheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupTheme.m; sourceTree = "<group>"; };
 		B58F860D19D858730044BACB /* CNPPopupControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNPPopupControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58F861119D858730044BACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58F861219D858730044BACB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +44,8 @@
 		B58F862619D858730044BACB /* CNPPopupControllerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CNPPopupControllerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58F862B19D858730044BACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58F862C19D858730044BACB /* CNPPopupControllerExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNPPopupControllerExampleTests.m; sourceTree = "<group>"; };
+		B5D3A81A19D85A5A0001B05D /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
+		B5D3A81B19D85A5A0001B05D /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,7 @@
 		B58F860419D858730044BACB = {
 			isa = PBXGroup;
 			children = (
+				B5D3A81919D858BE0001B05D /* CNPPopupController */,
 				B58F860F19D858730044BACB /* CNPPopupControllerExample */,
 				B58F862919D858730044BACB /* CNPPopupControllerExampleTests */,
 				B58F860E19D858730044BACB /* Products */,
@@ -117,6 +124,17 @@
 				B58F862B19D858730044BACB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B5D3A81919D858BE0001B05D /* CNPPopupController */ = {
+			isa = PBXGroup;
+			children = (
+				B5D3A81A19D85A5A0001B05D /* CNPPopupController.h */,
+				B5D3A81B19D85A5A0001B05D /* CNPPopupController.m */,
+				B57A6BC219D8F36600AA1D1A /* CNPPopupTheme.h */,
+				B57A6BC319D8F36600AA1D1A /* CNPPopupTheme.m */,
+			);
+			path = CNPPopupController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +237,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5D3A81C19D85A5A0001B05D /* CNPPopupController.m in Sources */,
 				B58F861919D858730044BACB /* ViewController.m in Sources */,
 				B58F861619D858730044BACB /* AppDelegate.m in Sources */,
 				B58F861319D858730044BACB /* main.m in Sources */,
+				B57A6BC419D8F36600AA1D1A /* CNPPopupTheme.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +365,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = CNPPopupControllerExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -355,7 +377,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = CNPPopupControllerExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -414,6 +438,7 @@
 				B58F863219D858730044BACB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B58F863319D858730044BACB /* Build configuration list for PBXNativeTarget "CNPPopupControllerExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +447,7 @@
 				B58F863519D858730044BACB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

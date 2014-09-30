@@ -10,6 +10,9 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)showPopupCentered:(id)sender;
+- (IBAction)showPopupFormSheet:(id)sender;
+- (IBAction)showPopupFullscreen:(id)sender;
 
 @end
 

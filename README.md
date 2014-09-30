@@ -1,6 +1,6 @@
 #CNPPopupController
 
-CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions. It includes a many of options for controlling how your popup appears and behaves.
+CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions. It includes a many options for controlling how your popup appears and behaves.
 
 <p align="center"><img src="https://raw.githubusercontent.com/carsonperrotti/CNPPopupController/master/CNPPopupControllerExample/CNPPopupController.gif"/></p>
 

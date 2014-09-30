@@ -72,7 +72,7 @@ A `CNPPopupTheme` instance can be created and assigned to the `theme` property o
 `CNPPopupController` supports **Portrait** and **Landscape** by default.
 
 ### Deployment
-`CNPPopupController ` workes on **iOS 7** and **iOS 8**.
+`CNPPopupController ` works on **iOS 7** and **iOS 8**.
 
 ### Devices
 `CNPPopupController ` supports **iPhone** and **iPad**.

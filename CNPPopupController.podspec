@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.name         		= "CNPPopupController"
   s.version      		= @version
   s.summary      		= "CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions."
-  s.description     = "It includes a many of options for controlling how your popup appears and behaves."
+  s.description     = "It includes a many options for controlling how your popup appears and behaves."
   s.homepage        = "https://carsonperrotti.com/"
   s.screenshots     = "https://raw.githubusercontent.com/carsonperrotti/CNPPopupController/master/CNPPopupControllerExample/CNPPopupController.gif"
   s.license         = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }

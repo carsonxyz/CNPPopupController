@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint CNPPopupController.podspec' to ensure this is a
+#  Be sure to run `pod spec lint CNPPopoverController.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,13 +15,14 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "CNPPopupController"
+  s.name         = "CNPPopoverController"
   s.version      = "0.0.1"
-  s.summary      = "A versatily popup for iOS"
+  s.summary      = "A versatile popup for iOS"
 
   s.description  = <<-DESC
                    CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions.
                    It includes a many options for controlling how your popup appears and behaves.
+
                    * Think: Why did you write this? What is the focus? What does it do?
                    * CocoaPods will be using this to generate tags, and improve search results.
                    * Try to keep it short, snappy and to the point.
@@ -29,7 +30,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/carsonperrotti/CNPPopupController"
-  # s.screenshots  = "https://raw.githubusercontent.com/carsonperrotti/CNPPopupController/master/CNPPopupControllerExample/CNPPopupController.gif"
+  s.screenshots  = "https://raw.githubusercontent.com/carsonperrotti/CNPPopupController/master/CNPPopupControllerExample/CNPPopupController.gif"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -52,6 +53,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
+  # s.author             = { "Carson Perrotti" => "carsonperrotti@gmail.com" }
   s.author    = "Carson Perrotti"
   # s.authors            = { "Carson Perrotti" => "carsonperrotti@gmail.com" }
   # s.social_media_url   = "http://twitter.com/Carson Perrotti"
@@ -62,7 +64,6 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
   s.platform     = :ios, "7.0"
 
   #  When using multiple platforms
@@ -87,7 +88,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "CNPPopupController/*.{h,m}"
+  s.source_files  = "CNPPopoverController", "CNPPopoverController/*.{h,m}"
   # s.public_header_files = "Classes/**/*.h"
 
 

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CNPPopupController"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A versatile popup for iOS"
 
   s.description  = <<-DESC
@@ -128,6 +128,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
+  s.dependency "PureLayout"
 
 end

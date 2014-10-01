@@ -8,7 +8,12 @@
 
 #import "CNPPopupController.h"
 #import <QuartzCore/QuartzCore.h>
+#import <PureLayout.h>
 
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
 typedef struct {
@@ -74,32 +79,33 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 #pragma mark - Orientation Handling
 
 - (void)updateForInterfaceOrientation {
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    CGFloat angle;
-    switch (orientation) {
-        case UIInterfaceOrientationPortraitUpsideDown:
-            angle = M_PI;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            angle = -M_PI/2.0f;;
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            angle = M_PI/2.0f;
-            break;
-        default: // as UIInterfaceOrientationPortrait
-            angle = 0.0;
-            break;
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+
+        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+        CGFloat angle;
+        switch (orientation) {
+            case UIInterfaceOrientationPortraitUpsideDown:
+                angle = M_PI;
+                break;
+            case UIInterfaceOrientationLandscapeLeft:
+                angle = -M_PI/2.0f;;
+                break;
+            case UIInterfaceOrientationLandscapeRight:
+                angle = M_PI/2.0f;
+                break;
+            default: // as UIInterfaceOrientationPortrait
+                angle = 0.0;
+                break;
+        }
+        self.transform = CGAffineTransformMakeRotation(angle);
     }
-    self.transform = CGAffineTransformMakeRotation(angle);
     self.frame = self.window.bounds;
     self.maskView.frame = self.bounds;
     self.contentView.center = [self popupEndingPoint];
 }
 
 - (void)didChangeStatusBarOrientation:(NSNotification*)notification {
-    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"8.0")) {
-        [self updateForInterfaceOrientation];
-    }
+    [self updateForInterfaceOrientation];
 }
 
 #pragma mark - Popup Content Setup
@@ -407,9 +413,7 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
                 if (window.windowLevel == UIWindowLevelNormal) {
                     [window addSubview:self];
                     // Before we calculate layout for containerView, make sure we are transformed for current orientation.
-                    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"8.0")) {
-                        [self updateForInterfaceOrientation];
-                    }
+                    [self updateForInterfaceOrientation];
                     [self setUpPopup];
                     break;
                 }

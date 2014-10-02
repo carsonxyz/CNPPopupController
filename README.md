@@ -2,6 +2,8 @@
 
 CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions. It includes a many options for controlling how your popup appears and behaves.
 
+Please feel free to contribute to this project, open issues, make suggestions and submit pull-requests. If you use this project in your app, let me know. I'd love to see what you do with it. 
+
 <p align="center"><img src="https://raw.githubusercontent.com/carsonperrotti/CNPPopupController/master/CNPPopupControllerExample/CNPPopupController.gif"/></p>
 
 ## Installation
@@ -9,7 +11,6 @@ CNPPopupController is a simple and versatile class for presenting a custom popup
 Available in [Cocoa Pods](http://cocoapods.org/?q=CNPPopupController)
 
 `pod 'CNPPopupController'`
-
 
 ##Usage
 
@@ -68,17 +69,8 @@ A `CNPPopupTheme` instance can be created and assigned to the `theme` property o
 
 ## Notes
 
-### Interface Orientation
-`CNPPopupController` supports **Portrait** and **Landscape** by default.
-
 ### Deployment
 `CNPPopupController ` works on **iOS 7** and **iOS 8**.
-
-### Devices
-`CNPPopupController ` supports **iPhone** and **iPad**.
-
-### ARC
-`CNPPopupController ` requires ARC.
 
 ### TODO
 - Add better rotation support including resizing to fit.

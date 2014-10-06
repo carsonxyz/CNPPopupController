@@ -263,6 +263,10 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     [self layoutIfNeeded];
     [self setPresentedConstraints];
     
+    if ([self.delegate respondsToSelector:@selector(popupControllerWillPresent:)]) {
+        [self.delegate popupControllerWillPresent:self];
+    }
+    
     [UIView animateWithDuration:flag ? 0.3f : 0.0f
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -286,6 +290,10 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 - (void)dismissPopupControllerAnimated:(BOOL)flag withButtonTitle:(NSString *)title {
     
     [self setDismissedConstraints];
+    
+    if ([self.delegate respondsToSelector:@selector(popupController:willDismissWithButtonTitle:)]) {
+        [self.delegate popupController:self willDismissWithButtonTitle:title];
+    }
     
     [UIView animateWithDuration:flag ? 0.3f : 0.0f
                           delay:0
@@ -354,23 +362,8 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 
 #pragma mark - Window Handling
 
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    CGFloat maxWidth = self.contentView.bounds.size.width - (self.theme.popupContentInsets.left + self.theme.popupContentInsets.right);
-//    for (UIView *view in self.contentView.subviews) {
-//        if ([view isKindOfClass:[UILabel class]]) {
-//            [((UILabel *)view) setPreferredMaxLayoutWidth:maxWidth];
-//        }
-//    }
-//    [self.contentView setNeedsUpdateConstraints];
-//}
-
 - (void)statusBarFrameOrOrientationChanged:(NSNotification *)notification
 {
-    /*
-     This notification is most likely triggered inside an animation block,
-     therefore no animation is needed to perform this nice transition.
-     */
     [self rotateAccordingToStatusBarOrientationAndSupportedOrientations];
 }
 

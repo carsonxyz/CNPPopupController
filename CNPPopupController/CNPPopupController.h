@@ -34,7 +34,10 @@
 
 @protocol CNPPopupControllerDelegate <NSObject>
 
+@optional
+- (void)popupControllerWillPresent:(CNPPopupController *)controller;
 - (void)popupControllerDidPresent:(CNPPopupController *)controller;
+- (void)popupController:(CNPPopupController *)controller willDismissWithButtonTitle:(NSString *)title;
 - (void)popupController:(CNPPopupController *)controller didDismissWithButtonTitle:(NSString *)title;
 
 @end

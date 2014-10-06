@@ -37,8 +37,6 @@ typedef NS_ENUM(NSInteger, CNPPopupMaskType) {
 @property (nonatomic, assign) CGFloat cornerRadius; // Corner radius of the popup content view (Default 6.0)
 @property (nonatomic, strong) UIColor *buttonBackgroundColor; // Background color of the content buttons (Default gray)
 @property (nonatomic, strong) UIColor *destructiveButtonBackgroundColor; // Background color of the destructive button at the bottom of the popup (Default light gray)
-@property (nonatomic, assign) CGFloat preferredPopupWidth; // Ideal width of the popup. (Defaults to screen width except 300.0 when centered)
-@property (nonatomic, assign) CGFloat minimumPopupHeight; // Minimum height of the popup if content is short (Default 300.0)
 @property (nonatomic, assign) CGFloat buttonHeight; // Height of the action buttons (Default 44.0f)
 @property (nonatomic, assign) CGFloat buttonCornerRadius; // Corner radius of the action buttons (Default 6.0f)
 @property (nonatomic, assign) UIEdgeInsets popupContentInsets; // Inset of labels, images and buttons on the popup content view (Default 16.0 on all sides)
@@ -47,7 +45,6 @@ typedef NS_ENUM(NSInteger, CNPPopupMaskType) {
 @property (nonatomic, assign) CNPPopupMaskType maskType; // Backgound mask of the popup (Default dimmed)
 @property (nonatomic, assign) BOOL shouldDismissOnBackgroundTouch; // Popup should dismiss on tapping on background mask (Default yes)
 @property (nonatomic, assign) CGFloat contentVerticalPadding; // Spacing between each vertical element (Default 12.0)
-@property (nonatomic, assign) UIStatusBarStyle fullscreenStatusBarStyle; // Status bar style for fullscreen presentation (Default not set)
 
 // Factory method to help build a default theme
 + (CNPPopupTheme *)defaultTheme;

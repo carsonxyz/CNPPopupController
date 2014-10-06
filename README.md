@@ -1,4 +1,4 @@
-#CNPPopupController
+#CNPPopupController (Updated: Oct, 5 2014 v0.0.3)
 
 CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions. It includes a many options for controlling how your popup appears and behaves.
 

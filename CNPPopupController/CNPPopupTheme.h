@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, CNPPopupMaskType) {
 @property (nonatomic, assign) UIEdgeInsets popupContentInsets; // Inset of labels, images and buttons on the popup content view (Default 16.0 on all sides)
 @property (nonatomic, assign) CNPPopupStyle popupStyle; // How the popup looks once presented (Default centered)
 @property (nonatomic, assign) CNPPopupPresentationStyle presentationStyle; // How the popup is presented (Defauly slide in from bottom)
+@property (nonatomic, assign) BOOL dismissesOppositeDirection; // If presented from a direction, should it dismiss in the opposite? (Defaults to NO. i.e. Goes back the way it came in)
 @property (nonatomic, assign) CNPPopupMaskType maskType; // Backgound mask of the popup (Default dimmed)
 @property (nonatomic, assign) BOOL shouldDismissOnBackgroundTouch; // Popup should dismiss on tapping on background mask (Default yes)
 @property (nonatomic, assign) CGFloat contentVerticalPadding; // Spacing between each vertical element (Default 12.0)

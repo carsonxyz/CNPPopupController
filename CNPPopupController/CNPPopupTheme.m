@@ -21,6 +21,7 @@
     defaultTheme.popupContentInsets = UIEdgeInsetsMake(16.0f, 16.0f, 16.0f, 16.0f);
     defaultTheme.popupStyle = CNPPopupStyleCentered;
     defaultTheme.presentationStyle = CNPPopupPresentationStyleSlideInFromBottom;
+    defaultTheme.dismissesOppositeDirection = NO;
     defaultTheme.maskType = CNPPopupMaskTypeDimmed;
     defaultTheme.shouldDismissOnBackgroundTouch = YES;
     defaultTheme.contentVerticalPadding = 12.0f;

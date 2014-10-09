@@ -258,7 +258,7 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     }
     
     [self setUpPopup];
-    [self setDismissedConstraints];
+    [self setOriginConstraints];
     [self needsUpdateConstraints];
     [self layoutIfNeeded];
     [self setPresentedConstraints];
@@ -288,8 +288,12 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 }
 
 - (void)dismissPopupControllerAnimated:(BOOL)flag withButtonTitle:(NSString *)title {
-    
-    [self setDismissedConstraints];
+
+    if (self.theme.dismissesOppositeDirection) {
+        [self setDismissedConstraints];
+    } else {
+        [self setOriginConstraints];
+    }
     
     if ([self.delegate respondsToSelector:@selector(popupController:willDismissWithButtonTitle:)]) {
         [self.delegate popupController:self willDismissWithButtonTitle:title];
@@ -314,8 +318,8 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
                      }];
 }
 
-- (void)setDismissedConstraints {
-    
+- (void)setOriginConstraints {
+
     if (self.theme.popupStyle == CNPPopupStyleCentered) {
         switch (self.theme.presentationStyle) {
             case CNPPopupPresentationStyleFadeIn:
@@ -337,6 +341,41 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
             case CNPPopupPresentationStyleSlideInFromRight:
                 self.contentViewCenterYConstraint.constant = 0;
                 self.contentViewCenterXConstraint.constant = self.applicationKeyWindow.bounds.size.height;
+                break;
+            default:
+                self.contentViewCenterYConstraint.constant = 0;
+                self.contentViewCenterXConstraint.constant = 0;
+                break;
+        }
+    }
+    else if (self.theme.popupStyle == CNPPopupStyleActionSheet) {
+        self.contentViewBottom.constant = self.applicationKeyWindow.bounds.size.height;
+    }
+}
+
+- (void)setDismissedConstraints {
+    
+    if (self.theme.popupStyle == CNPPopupStyleCentered) {
+        switch (self.theme.presentationStyle) {
+            case CNPPopupPresentationStyleFadeIn:
+                self.contentViewCenterYConstraint.constant = 0;
+                self.contentViewCenterXConstraint.constant = 0;
+                break;
+            case CNPPopupPresentationStyleSlideInFromTop:
+                self.contentViewCenterYConstraint.constant = self.applicationKeyWindow.bounds.size.height;
+                self.contentViewCenterXConstraint.constant = 0;
+                break;
+            case CNPPopupPresentationStyleSlideInFromBottom:
+                self.contentViewCenterYConstraint.constant = -self.applicationKeyWindow.bounds.size.height;
+                self.contentViewCenterXConstraint.constant = 0;
+                break;
+            case CNPPopupPresentationStyleSlideInFromLeft:
+                self.contentViewCenterYConstraint.constant = 0;
+                self.contentViewCenterXConstraint.constant = self.applicationKeyWindow.bounds.size.height;
+                break;
+            case CNPPopupPresentationStyleSlideInFromRight:
+                self.contentViewCenterYConstraint.constant = 0;
+                self.contentViewCenterXConstraint.constant = -self.applicationKeyWindow.bounds.size.height;
                 break;
             default:
                 self.contentViewCenterYConstraint.constant = 0;

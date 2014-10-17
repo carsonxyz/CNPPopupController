@@ -9,6 +9,7 @@
 #import "CNPPopupController.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define CNP_SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define CNP_IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 typedef struct {
@@ -77,8 +78,10 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
             }
         }
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+        if (CNP_SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
+        }
     }
     return self;
 }
@@ -245,7 +248,9 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     // Safety Checks
     NSAssert(self.theme!=nil,@"You must set a theme. You can use [CNPTheme defaultTheme] as a starting place");
     [self setUpPopup];
-    [self rotateAccordingToStatusBarOrientationAndSupportedOrientations];
+    if (CNP_SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+        [self rotateAccordingToStatusBarOrientationAndSupportedOrientations];
+    }
     [self setDismissedConstraints];
     [self.maskView needsUpdateConstraints];
     [self.maskView layoutIfNeeded];

@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CNPPopupController"
-  s.version      = "0.0.4"
+  s.version      = "0.1.0"
   s.summary      = "A versatile popup for iOS"
 
   s.description  = <<-DESC
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/carsonperrotti/CNPPopupController.git", :tag => "0.0.4" }
+  s.source       = { :git => "https://github.com/carsonperrotti/CNPPopupController.git", :tag => "0.1.0" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

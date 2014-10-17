@@ -45,6 +45,8 @@
     CNPPopupController *popupController = [[CNPPopupController alloc] initWithTitle:title contents:@[lineOne, icon, lineTwo] buttonTitles:@[buttonTitle] destructiveButtonTitle:nil];
     popupController.theme = [CNPPopupTheme defaultTheme];
     popupController.theme.popupStyle = popupStyle;
+    popupController.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromTop;
+    popupController.theme.dismissesOppositeDirection = YES;
     popupController.delegate = self;
     [popupController presentPopupControllerAnimated:YES];
 }

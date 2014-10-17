@@ -12,6 +12,8 @@
 
 @interface ViewController () <CNPPopupControllerDelegate>
 
+@property (nonatomic, strong) CNPPopupController *popupController;
+
 @end
 
 @implementation ViewController
@@ -42,12 +44,17 @@
     
     NSAttributedString *buttonTitle = [[NSAttributedString alloc] initWithString:@"Close me" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:18], NSForegroundColorAttributeName : [UIColor whiteColor], NSParagraphStyleAttributeName : paragraphStyle}];
     
-    CNPPopupController *popupController = [[CNPPopupController alloc] initWithTitle:title contents:@[lineOne, icon, lineTwo] buttonTitles:@[buttonTitle] destructiveButtonTitle:nil];
-    popupController.theme = [CNPPopupTheme defaultTheme];
-    popupController.theme.popupStyle = popupStyle;
-    popupController.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromTop;
-    popupController.delegate = self;
-    [popupController presentPopupControllerAnimated:YES];
+    CNPPopupButtonItem *buttonItem = [CNPPopupButtonItem defaultButtonItemWithTitle:buttonTitle backgroundColor:[UIColor colorWithRed:0.46 green:0.8 blue:1.0 alpha:1.0]];
+    buttonItem.selectionHandler = ^(CNPPopupButtonItem *item){
+        NSLog(@"Block for button: %@", item.buttonTitle.string);
+    };
+    
+    self.popupController = [[CNPPopupController alloc] initWithTitle:title contents:@[lineOne, icon, lineTwo] buttonItems:@[buttonItem] destructiveButtonItem:nil];
+    self.popupController.theme = [CNPPopupTheme defaultTheme];
+    self.popupController.theme.popupStyle = popupStyle;
+    self.popupController.delegate = self;
+    self.popupController.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromBottom;
+    [self.popupController presentPopupControllerAnimated:YES];
 }
 
 #pragma mark - CNPPopupController Delegate 

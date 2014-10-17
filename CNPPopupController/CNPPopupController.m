@@ -8,10 +8,8 @@
 
 #import "CNPPopupController.h"
 #import <QuartzCore/QuartzCore.h>
-#import <PureLayout.h>
 
 #define CNP_IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-
 
 typedef struct {
     CGFloat top;
@@ -25,12 +23,17 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     return padding;
 };
 
+@interface CNPPopupButton : UIButton
+
+@property (nonatomic, strong) CNPPopupButtonItem *item;
+
+@end
+
 @interface CNPPopupController ()
 
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIWindow *applicationKeyWindow;
-@property (nonatomic, assign) BOOL isShowing;
 
 @property (nonatomic, strong) NSLayoutConstraint *contentViewCenterXConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *contentViewCenterYConstraint;
@@ -44,14 +47,14 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 
 - (instancetype)initWithTitle:(NSAttributedString *)popupTitle
                      contents:(NSArray *)contents
-                 buttonTitles:(NSArray *)buttonTitles
-       destructiveButtonTitle:(NSAttributedString *)destructiveButtonTitle {
+                  buttonItems:(NSArray *)buttonItems
+        destructiveButtonItem:(CNPPopupButtonItem *)destructiveButtonItem {
     self = [super init];
     if (self) {
         _popupTitle = popupTitle;
         _contents = contents;
-        _buttonTitles = buttonTitles;
-        _destructiveButtonTitle = destructiveButtonTitle;
+        _buttonItems = buttonItems;
+        _destructiveButtonItem = destructiveButtonItem;
         
         // Safety Checks
         if (contents) {
@@ -59,9 +62,9 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
                 NSAssert([object class] != [NSAttributedString class] || [object class] != [UIImage class],@"Contents can only be of NSAttributedString or UIImage class.");
             }
         }
-        if (buttonTitles) {
-            for (id object in buttonTitles) {
-                NSAssert([object class] != [NSAttributedString class],@"Button titles can only be of NSAttributedString.");
+        if (buttonItems) {
+            for (id object in buttonItems) {
+                NSAssert([object class] == [CNPPopupButtonItem class],@"Button items can only be of CNPPopupButtonItem.");
             }
         }
         
@@ -80,17 +83,11 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     return self;
 }
 
-#pragma mark - Touch Handling
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch * touch = [[event allTouches] anyObject];
-    if (touch.view == self.maskView) {
-        // Try to dismiss if backgroundTouch flag set.
-        if (self.theme.shouldDismissOnBackgroundTouch) {
-            [self dismissPopupControllerAnimated:YES];
-        }
-    }
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+#pragma mark - Touch Handling
 
 - (void)setUpPopup {
     
@@ -144,9 +141,9 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
         }
     }
     
-    if (self.buttonTitles) {
-        for (NSAttributedString *string in self.buttonTitles) {
-            UIButton *button = [self buttonWithAttributedTitle:string];
+    if (self.buttonItems) {
+        for (CNPPopupButtonItem *item in self.buttonItems) {
+            CNPPopupButton *button = [self buttonItem:item];
             [self.contentView addSubview:button];
         }
     }
@@ -163,12 +160,13 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
         }
         
         if (idx == self.contentView.subviews.count - 1) {
-            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-(self.theme.popupContentInsets.bottom + (self.destructiveButtonTitle ? self.theme.buttonHeight : 0.0f))]];
+            
+            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-(self.theme.popupContentInsets.bottom + (self.destructiveButtonItem ? self.destructiveButtonItem.buttonHeight : 0.0f))]];
         }
         
         if ([view isKindOfClass:[UIButton class]]) {
-            UIButton *button = (UIButton *)view;
-            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.theme.buttonHeight]];
+            CNPPopupButton *button = (CNPPopupButton *)view;
+            [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:button.item.buttonHeight]];
             [button addTarget:self action:@selector(actionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
@@ -187,11 +185,10 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-self.theme.popupContentInsets.right]];
     }];
     
-    if (self.destructiveButtonTitle) {
-        UIButton *destructiveButton = [self destructiveButtonWithAttributedTitle:self.destructiveButtonTitle];
-        [destructiveButton setBackgroundColor:self.theme.destructiveButtonBackgroundColor];
+    if (self.destructiveButtonItem) {
+        CNPPopupButton *destructiveButton = [self buttonItem:self.destructiveButtonItem];
         [self.contentView addSubview:destructiveButton];
-        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:destructiveButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.theme.buttonHeight]];
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:destructiveButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.destructiveButtonItem.buttonHeight]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:destructiveButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:destructiveButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:destructiveButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
@@ -233,7 +230,10 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     
 }
 
-- (void)actionButtonPressed:(UIButton *)sender {
+- (void)actionButtonPressed:(CNPPopupButton *)sender {
+    if (sender.item.selectionHandler) {
+        sender.item.selectionHandler(sender.item);
+    }
     [self dismissPopupControllerAnimated:YES withButtonTitle:[sender attributedTitleForState:UIControlStateNormal].string];
 }
 
@@ -244,11 +244,9 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     
     // Safety Checks
     NSAssert(self.theme!=nil,@"You must set a theme. You can use [CNPTheme defaultTheme] as a starting place");
-    
-    [self rotateAccordingToStatusBarOrientationAndSupportedOrientations];
-    
     [self setUpPopup];
-    [self setOriginConstraints];
+    [self rotateAccordingToStatusBarOrientationAndSupportedOrientations];
+    [self setDismissedConstraints];
     [self.maskView needsUpdateConstraints];
     [self.maskView layoutIfNeeded];
     [self setPresentedConstraints];
@@ -266,7 +264,6 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
                          [self.maskView layoutIfNeeded];
                      }
                      completion:^(BOOL finished) {
-                         self.isShowing = YES;
                          if ([self.delegate respondsToSelector:@selector(popupControllerDidPresent:)]) {
                              [self.delegate popupControllerDidPresent:self];
                          }
@@ -301,7 +298,6 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
                          [self.maskView removeFromSuperview];
                          self.maskView = nil;
                          self.contentView = nil;
-                         self.isShowing = NO;
                          if ([self.delegate respondsToSelector:@selector(popupController:didDismissWithButtonTitle:)]) {
                              [self.delegate popupController:self didDismissWithButtonTitle:title];
                          }
@@ -488,21 +484,55 @@ UIInterfaceOrientationMask UIInterfaceOrientationMaskFromOrientation(UIInterface
     return imageView;
 }
 
-- (UIButton *)buttonWithAttributedTitle:(NSAttributedString *)attributedTitle {
-    UIButton *button = [[UIButton alloc] init];
+- (CNPPopupButton *)buttonItem:(CNPPopupButtonItem *)item {
+    CNPPopupButton *button = [[CNPPopupButton alloc] init];
     [button setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [button setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-    [button setBackgroundColor:self.theme.buttonBackgroundColor];
-    [button.layer setCornerRadius:self.theme.buttonCornerRadius];
+    [button setAttributedTitle:item.buttonTitle forState:UIControlStateNormal];
+    [button setBackgroundColor:item.backgroundColor];
+    [button.layer setCornerRadius:item.cornerRadius];
+    [button.layer setBorderColor:item.borderColor.CGColor];
+    [button.layer setBorderWidth:item.borderWidth];
+    button.item = item;
     return button;
 }
 
-- (UIButton *)destructiveButtonWithAttributedTitle:(NSAttributedString *)attributedTitle {
-    UIButton *button = [[UIButton alloc] init];
-    [button setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [button setAttributedTitle:attributedTitle forState:UIControlStateNormal];
-    [button setBackgroundColor:self.theme.destructiveButtonBackgroundColor];
-    return button;
+@end
+
+#pragma mark - CNPPopupButton Methods
+
+@implementation CNPPopupButton
+
+@end
+
+#pragma mark - CNPPopupButtonItem Methods
+
+@implementation CNPPopupButtonItem
+
++ (CNPPopupButtonItem *)defaultButtonItemWithTitle:(NSAttributedString *)title backgroundColor:(UIColor *)color {
+    CNPPopupButtonItem *item = [[CNPPopupButtonItem alloc] init];
+    item.buttonTitle = title;
+    item.cornerRadius = 3;
+    item.backgroundColor = color;
+    item.buttonHeight = 50;
+    return item;
+}
+
+@end
+
+@implementation CNPPopupTheme
+
++ (CNPPopupTheme *)defaultTheme {
+    CNPPopupTheme *defaultTheme = [[CNPPopupTheme alloc] init];
+    defaultTheme.backgroundColor = [UIColor whiteColor];
+    defaultTheme.cornerRadius = 6.0f;
+    defaultTheme.popupContentInsets = UIEdgeInsetsMake(16.0f, 16.0f, 16.0f, 16.0f);
+    defaultTheme.popupStyle = CNPPopupStyleCentered;
+    defaultTheme.presentationStyle = CNPPopupPresentationStyleSlideInFromBottom;
+    defaultTheme.dismissesOppositeDirection = NO;
+    defaultTheme.maskType = CNPPopupMaskTypeDimmed;
+    defaultTheme.shouldDismissOnBackgroundTouch = YES;
+    defaultTheme.contentVerticalPadding = 12.0f;
+    return defaultTheme;
 }
 
 @end

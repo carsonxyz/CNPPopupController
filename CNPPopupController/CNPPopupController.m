@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import <PureLayout.h>
 
-#define CNP_SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define CNP_IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 
@@ -18,6 +17,7 @@ typedef struct {
     CGFloat top;
     CGFloat bottom;
 } CNPTopBottomPadding;
+
 extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) {
     CNPTopBottomPadding padding;
     padding.top = top;
@@ -27,10 +27,10 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 
 @interface CNPPopupController ()
 
-@property (nonatomic, strong)   UIView *maskView;
-@property (nonatomic, strong)   UIView *contentView;
-@property (nonatomic, weak)     UIWindow *applicationKeyWindow;
-@property (nonatomic, assign)   BOOL isShowing;
+@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIWindow *applicationKeyWindow;
+@property (nonatomic, assign) BOOL isShowing;
 
 @property (nonatomic, strong) NSLayoutConstraint *contentViewCenterXConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *contentViewCenterYConstraint;
@@ -53,8 +53,6 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
         _buttonTitles = buttonTitles;
         _destructiveButtonTitle = destructiveButtonTitle;
         
-        [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-        
         // Safety Checks
         if (contents) {
             for (id object in contents) {
@@ -76,10 +74,8 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
             }
         }
         
-        if (CNP_SYSTEM_VERSION_LESS_THAN(@"8.0")) {
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
-        }
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusBarFrameOrOrientationChanged:) name:UIApplicationDidChangeStatusBarFrameNotification object:nil];
     }
     return self;
 }
@@ -97,12 +93,18 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 }
 
 - (void)setUpPopup {
-    self.backgroundColor = [UIColor clearColor];
     
     // Set up mask view
     self.maskView = [[UIView alloc] init];
     [self.maskView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.maskView.alpha = 0.0;
+    
+    [self.applicationKeyWindow addSubview:self.maskView];
+    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
+    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
+    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
+    
     if (self.theme.popupStyle == CNPPopupStyleFullscreen) {
         self.maskView.backgroundColor = [UIColor whiteColor];
     }
@@ -113,12 +115,6 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
             self.maskView.backgroundColor = [UIColor clearColor];
         }
     }
-    [self addSubview:self.maskView];
-    
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
     
     self.contentView = [[UIView alloc] init];
     [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -171,8 +167,9 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
         }
         
         if ([view isKindOfClass:[UIButton class]]) {
+            UIButton *button = (UIButton *)view;
             [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.theme.buttonHeight]];
-            [((UIButton *)view) addTarget:self action:@selector(actionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:self action:@selector(actionButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         [view setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
@@ -244,23 +241,16 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 
 - (void)presentPopupControllerAnimated:(BOOL)flag {
     
-    [self.applicationKeyWindow addSubview:self];
-    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
-    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
-    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
-    [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeRight multiplier:1.0 constant:0]];
     
     // Safety Checks
     NSAssert(self.theme!=nil,@"You must set a theme. You can use [CNPTheme defaultTheme] as a starting place");
     
-    if (CNP_SYSTEM_VERSION_LESS_THAN(@"8.0")) {
-        [self rotateAccordingToStatusBarOrientationAndSupportedOrientations];
-    }
+    [self rotateAccordingToStatusBarOrientationAndSupportedOrientations];
     
     [self setUpPopup];
     [self setOriginConstraints];
-    [self needsUpdateConstraints];
-    [self layoutIfNeeded];
+    [self.maskView needsUpdateConstraints];
+    [self.maskView layoutIfNeeded];
     [self setPresentedConstraints];
     
     if ([self.delegate respondsToSelector:@selector(popupControllerWillPresent:)]) {
@@ -272,8 +262,8 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.maskView.alpha = 1.0f;
-                         [self needsUpdateConstraints];
-                         [self layoutIfNeeded];
+                         [self.maskView needsUpdateConstraints];
+                         [self.maskView layoutIfNeeded];
                      }
                      completion:^(BOOL finished) {
                          self.isShowing = YES;
@@ -304,11 +294,11 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.maskView.alpha = 0.0f;
-                         [self needsUpdateConstraints];
-                         [self layoutIfNeeded];
+                         [self.maskView needsUpdateConstraints];
+                         [self.maskView layoutIfNeeded];
                      }
                      completion:^(BOOL finished) {
-                         [self removeFromSuperview];
+                         [self.maskView removeFromSuperview];
                          self.maskView = nil;
                          self.contentView = nil;
                          self.isShowing = NO;
@@ -413,20 +403,20 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     CGFloat statusBarHeight = [self getStatusBarHeight];
     
     CGAffineTransform transform = CGAffineTransformMakeRotation(angle);
-    CGRect frame = [self rectInWindowBounds:self.window.bounds statusBarOrientation:statusBarOrientation statusBarHeight:statusBarHeight];
+    CGRect frame = [self rectInWindowBounds:self.applicationKeyWindow.bounds statusBarOrientation:statusBarOrientation statusBarHeight:statusBarHeight];
     
     [self setIfNotEqualTransform:transform frame:frame];
 }
 
 - (void)setIfNotEqualTransform:(CGAffineTransform)transform frame:(CGRect)frame
 {
-    if(!CGAffineTransformEqualToTransform(self.transform, transform))
+    if(!CGAffineTransformEqualToTransform(self.maskView.transform, transform))
     {
-        self.transform = transform;
+        self.maskView.transform = transform;
     }
-    if(!CGRectEqualToRect(self.frame, frame))
+    if(!CGRectEqualToRect(self.maskView.frame, frame))
     {
-        self.frame = frame;
+        self.maskView.frame = frame;
     }
 }
 

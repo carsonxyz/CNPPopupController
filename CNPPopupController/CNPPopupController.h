@@ -11,7 +11,7 @@
 
 @protocol CNPPopupControllerDelegate;
 
-@interface CNPPopupController : UIView
+@interface CNPPopupController : NSObject
 
 @property (nonatomic, strong) NSAttributedString *popupTitle;
 @property (nonatomic, strong) NSArray *contents;

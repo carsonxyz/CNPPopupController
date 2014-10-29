@@ -30,11 +30,12 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
 
 @end
 
-@interface CNPPopupController ()
+@interface CNPPopupController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIWindow *applicationKeyWindow;
+@property (nonatomic, strong) UITapGestureRecognizer *backgroundDismissGesture;
 
 @property (nonatomic, strong) NSLayoutConstraint *contentViewCenterXConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *contentViewCenterYConstraint;
@@ -98,6 +99,12 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
     self.maskView = [[UIView alloc] init];
     [self.maskView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.maskView.alpha = 0.0;
+    
+    if (self.theme.shouldDismissOnBackgroundTouch) {
+        self.backgroundDismissGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnMaskView)];
+        self.backgroundDismissGesture.numberOfTapsRequired = 1;
+        [self.maskView addGestureRecognizer:self.backgroundDismissGesture];
+    }
     
     [self.applicationKeyWindow addSubview:self.maskView];
     [self.applicationKeyWindow addConstraint:[NSLayoutConstraint constraintWithItem:self.maskView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.applicationKeyWindow attribute:NSLayoutAttributeTop multiplier:1.0 constant:0]];
@@ -238,6 +245,12 @@ extern CNPTopBottomPadding CNPTopBottomPaddingMake(CGFloat top, CGFloat bottom) 
         sender.item.selectionHandler(sender.item);
     }
     [self dismissPopupControllerAnimated:YES withButtonTitle:[sender attributedTitleForState:UIControlStateNormal].string];
+}
+
+- (void)didTapOnMaskView {
+    if (self.theme.shouldDismissOnBackgroundTouch) {
+        [self dismissPopupControllerAnimated:YES withButtonTitle:nil];
+    }
 }
 
 #pragma mark - Presentation

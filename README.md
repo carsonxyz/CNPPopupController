@@ -1,6 +1,13 @@
 #CNPPopupController
 
-** Updated: Oct, 29 2014 v0.1.2 **
+##What's new
+** Updated: June 14th, 2015 v0.2.0 **
+- Completely rewritten. *Started from the bottom, now we're here.*
+- Ther are some minor API changes in v0.2.0. I tried to keep it as close to the last version as possible. See the example project if you need some help getting it set up.
+- Custom view support (You can add anything, as it's contents as long as it is a UIView or subclass of UIView
+- Lots of bug fixes
+
+##Introduction
 
 CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions. It includes a many options for controlling how your popup appears and behaves.
 
@@ -22,34 +29,14 @@ Available in [Cocoa Pods](http://cocoapods.org/?q=CNPPopupController)
 
 Create a popup with custom animations and behaviors. Customizations can also be accessed via properties on the `CNPPopupTheme` instance:
 
-	- (instancetype)initWithTitle:(NSAttributedString *)popupTitle
-                     contents:(NSArray *)contents
-                  buttonItems:(NSArray *)buttonItems
-       destructiveButtonItem:(CNPPopupButtonItem *)destructiveButtonItems;
+	- (instancetype)initWithContents:(NSArray *)contents;
 
-`popupTitle` only accepts an `NSAtributedString` object.
 
-`contents` only accepts an array of `NSAttributedString` and `UIImage` objects.
-
-`buttonItems` only accepts an array of `CNPPopupButtonItem` objects.
-
-`destructiveButtonItem ` only accepts an `CNPPopupButtonItem` object.
-
----
-
-Note: You may pass `nil` for any of the initializer properties when creating the popup, but **you must assign a `theme` to the popup before showing it!**
-
-A default theme `+ [CNPPopupTheme defaultTheme]` has been created to help you out.
-
---- 
-
-`CNPPopupButtonItem` allows you to customize the style for each button on a `CNPPopupController` instance. You may customize button height, color, border width, corner radius, and border color;
+`contents` only accepts an array of `UIView` objects.
 					
-## Showing a Popup
+## Presentation
 
 `- (void)presentPopupControllerAnimated:(BOOL)flag;`
-
-## Dismissing a Popup
 
 `- (void)dismissPopupControllerAnimated:(BOOL)flag;`
 
@@ -61,10 +48,6 @@ A `CNPPopupTheme` instance can be created and assigned to the `theme` property o
 
 `@property (nonatomic, assign) CGFloat cornerRadius;`
 
-`@property (nonatomic, assign) CGFloat preferredPopupWidth;`
-
-`@property (nonatomic, assign) CGFloat minimumPopupHeight;`
-
 `@property (nonatomic, assign) UIEdgeInsets popupContentInsets;`
 
 `@property (nonatomic, assign) CNPPopupStyle popupStyle;`
@@ -73,19 +56,20 @@ A `CNPPopupTheme` instance can be created and assigned to the `theme` property o
 
 `@property (nonatomic, assign) CNPPopupMaskType maskType;`
 
+`@property (nonatomic, assign) BOOL dismissesOppositeDirection;`
+
 `@property (nonatomic, assign) BOOL shouldDismissOnBackgroundTouch;`
+
+`@property (nonatomic, assign) BOOL movesAboveKeyboard;`
 
 `@property (nonatomic, assign) CGFloat contentVerticalPadding;`
 
-`@property (nonatomic, assign) UIStatusBarStyle fullscreenStatusBarStyle;`
+`@property (nonatomic, assign) CGFloat maxPopupWidth;`
 
 ## Notes
 
 ### Deployment
 `CNPPopupController ` works on **iOS 7** and **iOS 8**.
 
-### TODO
-- Add 'blur' option for background mask
-
 ##Credits
-CNPPopupController was created by [Carson Perrotti](http://carsonperrotti.com), where it's used in the [Joist app](http://joistapp.com).
+CNPPopupController was created by [Carson Perrotti](http://carsonperrotti.com)

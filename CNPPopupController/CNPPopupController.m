@@ -23,6 +23,7 @@ static inline UIViewAnimationOptions UIViewAnimationCurveToAnimationOptions(UIVi
 @property (nonatomic, strong) UITapGestureRecognizer *backgroundTapRecognizer;
 @property (nonatomic, strong) UIView *popupView;
 @property (nonatomic, strong) NSArray *views;
+@property (nonatomic) BOOL dismissAnimated;
 
 @end
 
@@ -242,6 +243,9 @@ CGFloat UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orientat
         [self.delegate popupControllerWillPresent:self];
     }
     
+    // Keep a record of if the popup was presented with animation
+    self.dismissAnimated = flag;
+    
     [self applyTheme];
     [self calculateContentSizeThatFits:CGSizeMake([self popupWidth], self.maskView.bounds.size.height) andUpdateLayout:YES];
     self.popupView.center = [self originPoint];
@@ -350,6 +354,7 @@ CGFloat UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orientat
 - (void)handleBackgroundTapGesture:(id)sender {
     if (self.theme.shouldDismissOnBackgroundTouch) {
         [self.popupView endEditing:YES];
+        [self dismissPopupControllerAnimated:self.dismissAnimated];
     }
 }
 

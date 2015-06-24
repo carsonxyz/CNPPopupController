@@ -72,7 +72,7 @@ A `CNPPopupTheme` instance can be created and assigned to the `theme` property o
 ## Notes
 
 ### Deployment
-`CNPPopupController ` works on **iOS 7** and **iOS 8**.
+`CNPPopupController ` works on **iOS 7+**
 
 ##Credits
 CNPPopupController was created by [Carson Perrotti](http://carsonperrotti.com)

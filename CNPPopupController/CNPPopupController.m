@@ -208,12 +208,15 @@ CGFloat UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orientat
 
 - (void)keyboardWithEndFrame:(CGRect)keyboardFrame willShowAfterDuration:(NSTimeInterval)duration withOptions:(UIViewAnimationOptions)options
 {
-    CGRect intersection = CGRectIntersection(self.popupView.frame, keyboardFrame);
-    CGPoint center = self.popupView.center;
-    center.y -= intersection.size.height;
-    [UIView animateWithDuration:duration delay:0.0f options:options animations:^{
-        self.popupView.center = center;
-    } completion:nil];
+    CGRect popupViewIntersection = CGRectIntersection(self.popupView.frame, keyboardFrame);
+    
+    if (popupViewIntersection.size.height > 0) {
+        CGRect maskViewIntersection = CGRectIntersection(self.maskView.frame, keyboardFrame);
+        
+        [UIView animateWithDuration:duration delay:0.0f options:options animations:^{
+            self.popupView.center = CGPointMake(self.popupView.center.x, (CGRectGetHeight(self.maskView.frame) - maskViewIntersection.size.height) / 2);
+        } completion:nil];
+    }
 }
 
 - (void)keyboardWillHide:(NSNotification*)notification

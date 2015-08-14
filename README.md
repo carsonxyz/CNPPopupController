@@ -1,5 +1,8 @@
 #CNPPopupController
-
+[![Pod Version](http://img.shields.io/cocoapods/v/CNPPopupController.svg?style=flat)](http://cocoadocs.org/docsets/CNPPopupController/)
+[![Pod Platform](http://img.shields.io/cocoapods/p/CNPPopupController.svg?style=flat)](http://cocoadocs.org/docsets/CNPPopupController/)
+[![Pod License](http://img.shields.io/cocoapods/l/CNPPopupController.svg?style=flat)](https://github.com/carsonperrotti/CNPPopupController/blob/master/LICENSE)
+[![Dependency Status](https://www.versioneye.com/objective-c/cnppopupcontroller/0.2.1/badge.svg?style=flat)](https://www.versioneye.com/objective-c/cnppopupcontroller)
 ##Version History
 **June 24th, 2015 v0.2.1**
 - Bug fix for dismissing on background mask touch.

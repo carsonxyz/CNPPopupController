@@ -4,6 +4,9 @@
 [![Pod License](http://img.shields.io/cocoapods/l/CNPPopupController.svg?style=flat)](https://github.com/carsonperrotti/CNPPopupController/blob/master/LICENSE)
 [![Dependency Status](https://www.versioneye.com/objective-c/cnppopupcontroller/0.2.1/badge.svg?style=flat)](https://www.versioneye.com/objective-c/cnppopupcontroller)
 ##Version History
+**August 16, 2015 v0.2.2**
+- Bug fix for centering the popup above the keyboard when presented. Thanks to [Nicholas](https://github.com/nicholas) for the proactive help on this one.
+
 **June 24th, 2015 v0.2.1**
 - Bug fix for dismissing on background mask touch.
 

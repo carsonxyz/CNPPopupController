@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CNPPopupController"
-  s.version      = "0.2.2"
+  s.version      = "0.2.3"
   s.summary      = "A versatile popup for iOS"
 
   s.description  = <<-DESC
@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "6.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/carsonperrotti/CNPPopupController.git", :tag => "0.2.2" }
+  s.source       = { :git => "https://github.com/carsonperrotti/CNPPopupController.git", :tag => "0.2.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

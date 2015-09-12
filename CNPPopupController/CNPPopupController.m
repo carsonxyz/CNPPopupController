@@ -408,6 +408,7 @@ CGFloat UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orientat
     defaultTheme.dismissesOppositeDirection = NO;
     defaultTheme.maskType = CNPPopupMaskTypeDimmed;
     defaultTheme.shouldDismissOnBackgroundTouch = YES;
+    defaultTheme.movesAboveKeyboard = YES;
     defaultTheme.contentVerticalPadding = 16.0f;
     defaultTheme.maxPopupWidth = 300.0f;
     return defaultTheme;

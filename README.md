@@ -3,25 +3,6 @@
 [![Pod Platform](http://img.shields.io/cocoapods/p/CNPPopupController.svg?style=flat)](http://cocoadocs.org/docsets/CNPPopupController/)
 [![Pod License](http://img.shields.io/cocoapods/l/CNPPopupController.svg?style=flat)](https://github.com/carsonperrotti/CNPPopupController/blob/master/LICENSE)
 [![Dependency Status](https://www.versioneye.com/objective-c/cnppopupcontroller/0.2.1/badge.svg?style=flat)](https://www.versioneye.com/objective-c/cnppopupcontroller)
-##Version History
-
-**September 11, 2015 v0.3.0**
-- Support for iOS 9 and a few bug fixes.
-
-**August 30, 2015 v0.2.3**
-- Lower minimum required OS version to 6.0, since it works there anyway. 
-
-**August 16, 2015 v0.2.2**
-- Bug fix for centering the popup above the keyboard when presented. Thanks to [Nicholas](https://github.com/nicholas) for the proactive help on this one.
-
-**June 24th, 2015 v0.2.1**
-- Bug fix for dismissing on background mask touch.
-
-**June 14th, 2015 v0.2.0**
-- Completely rewritten. *Started from the bottom, now we're here.*
-- Ther are some minor API changes in v0.2.0. I tried to keep it as close to the last version as possible. See the example project if you need some help getting it set up.
-- Custom view support (You can add anything, as it's contents as long as it is a UIView or subclass of UIView
-- Lots of bug fixes
 
 ##Introduction
 
@@ -89,3 +70,26 @@ A `CNPPopupTheme` instance can be created and assigned to the `theme` property o
 
 ##Credits
 CNPPopupController was created by [Carson Perrotti](http://carsonperrotti.com)
+
+##Version History
+
+**September 13, 2015 v0.3.1**
+- Sets `movesAboveKeyboard` to `YES` in the default theme.
+
+**September 11, 2015 v0.3.0**
+- Support for iOS 9 and a few bug fixes.
+
+**August 30, 2015 v0.2.3**
+- Lower minimum required OS version to 6.0, since it works there anyway. 
+
+**August 16, 2015 v0.2.2**
+- Bug fix for centering the popup above the keyboard when presented. Thanks to [Nicholas](https://github.com/nicholas) for the proactive help on this one.
+
+**June 24th, 2015 v0.2.1**
+- Bug fix for dismissing on background mask touch.
+
+**June 14th, 2015 v0.2.0**
+- Completely rewritten. *Started from the bottom, now we're here.*
+- Ther are some minor API changes in v0.2.0. I tried to keep it as close to the last version as possible. See the example project if you need some help getting it set up.
+- Custom view support (You can add anything, as it's contents as long as it is a UIView or subclass of UIView
+- Lots of bug fixes

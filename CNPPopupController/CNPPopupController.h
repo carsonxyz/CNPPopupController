@@ -37,7 +37,7 @@ typedef void(^SelectionHandler) (CNPPopupButton *button);
 
 @interface CNPPopupButton : UIButton
 
-@property (nonatomic, strong) SelectionHandler selectionHandler;
+@property (nonatomic, copy) SelectionHandler selectionHandler;
 
 @end
 

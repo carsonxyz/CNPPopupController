@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LI8-aN-Gzb">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CNPPopupControllerExampleSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKU-Tb-ti7">
+                                <rect key="frame" x="200" y="285" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="y9s-9c-po0"/>
+                                </constraints>
+                                <state key="normal" title="Show Popup Centered">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPopupCentered:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4b2-pa-xRz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmL-yJ-2uF">
+                                <rect key="frame" x="200" y="247" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.46274509800000002" green="0.83921568629999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="C5k-h4-USI"/>
+                                </constraints>
+                                <state key="normal" title="Show Popup Formsheet">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPopupFormSheet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N4F-2F-ffX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNb-Nv-TKo">
+                                <rect key="frame" x="200" y="323" width="200" height="30"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MGO-TW-qFv"/>
+                                </constraints>
+                                <state key="normal" title="Show Popup Fullscreen">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPopupFullscreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mXg-Ml-1Ep"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hKU-Tb-ti7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="58O-g0-3t2"/>
+                            <constraint firstItem="ZmL-yJ-2uF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="H8f-da-J6j"/>
+                            <constraint firstItem="hKU-Tb-ti7" firstAttribute="top" secondItem="ZmL-yJ-2uF" secondAttribute="bottom" constant="8" id="LVn-d9-qZW"/>
+                            <constraint firstItem="hKU-Tb-ti7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dpM-ax-66U"/>
+                            <constraint firstItem="eNb-Nv-TKo" firstAttribute="top" secondItem="hKU-Tb-ti7" secondAttribute="bottom" constant="8" id="e6u-K7-eHJ"/>
+                            <constraint firstItem="eNb-Nv-TKo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ydI-S7-Z3z"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="anH-bf-SbA"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1180" y="665"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="adN-yy-Zn5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LI8-aN-Gzb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6hM-IT-Lrn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="cCk-V5-nS6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a0q-lf-gmk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="454" y="665"/>
+        </scene>
+    </scenes>
+</document>

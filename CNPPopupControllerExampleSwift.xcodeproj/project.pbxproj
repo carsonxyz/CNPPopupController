@@ -1,0 +1,312 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B5CC93641C47F5E700E8A8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CC93631C47F5E700E8A8F7 /* AppDelegate.swift */; };
+		B5CC93661C47F5E700E8A8F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CC93651C47F5E700E8A8F7 /* ViewController.swift */; };
+		B5CC93691C47F5E700E8A8F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CC93671C47F5E700E8A8F7 /* Main.storyboard */; };
+		B5CC936B1C47F5E700E8A8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5CC936A1C47F5E700E8A8F7 /* Assets.xcassets */; };
+		B5CC936E1C47F5E700E8A8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CC936C1C47F5E700E8A8F7 /* LaunchScreen.storyboard */; };
+		B5CC93781C47F61F00E8A8F7 /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CC93771C47F61F00E8A8F7 /* CNPPopupController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B5CC93601C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNPPopupControllerExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5CC93631C47F5E700E8A8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B5CC93651C47F5E700E8A8F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B5CC93681C47F5E700E8A8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B5CC936A1C47F5E700E8A8F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5CC936D1C47F5E700E8A8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B5CC936F1C47F5E700E8A8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5CC93761C47F61F00E8A8F7 /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
+		B5CC93771C47F61F00E8A8F7 /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
+		B5CC93791C47F72A00E8A8F7 /* CNPPopupControllerExampleSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CNPPopupControllerExampleSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5CC935D1C47F5E700E8A8F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B5CC93571C47F5E700E8A8F7 = {
+			isa = PBXGroup;
+			children = (
+				B5CC93751C47F61F00E8A8F7 /* CNPPopupController */,
+				B5CC93621C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift */,
+				B5CC93611C47F5E700E8A8F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B5CC93611C47F5E700E8A8F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5CC93601C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5CC93621C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift */ = {
+			isa = PBXGroup;
+			children = (
+				B5CC93631C47F5E700E8A8F7 /* AppDelegate.swift */,
+				B5CC93651C47F5E700E8A8F7 /* ViewController.swift */,
+				B5CC93671C47F5E700E8A8F7 /* Main.storyboard */,
+				B5CC936A1C47F5E700E8A8F7 /* Assets.xcassets */,
+				B5CC936C1C47F5E700E8A8F7 /* LaunchScreen.storyboard */,
+				B5CC936F1C47F5E700E8A8F7 /* Info.plist */,
+				B5CC93791C47F72A00E8A8F7 /* CNPPopupControllerExampleSwift-Bridging-Header.h */,
+			);
+			path = CNPPopupControllerExampleSwift;
+			sourceTree = "<group>";
+		};
+		B5CC93751C47F61F00E8A8F7 /* CNPPopupController */ = {
+			isa = PBXGroup;
+			children = (
+				B5CC93761C47F61F00E8A8F7 /* CNPPopupController.h */,
+				B5CC93771C47F61F00E8A8F7 /* CNPPopupController.m */,
+			);
+			path = CNPPopupController;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B5CC935F1C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5CC93721C47F5E700E8A8F7 /* Build configuration list for PBXNativeTarget "CNPPopupControllerExampleSwift" */;
+			buildPhases = (
+				B5CC935C1C47F5E700E8A8F7 /* Sources */,
+				B5CC935D1C47F5E700E8A8F7 /* Frameworks */,
+				B5CC935E1C47F5E700E8A8F7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CNPPopupControllerExampleSwift;
+			productName = CNPPopupControllerExampleSwift;
+			productReference = B5CC93601C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B5CC93581C47F5E700E8A8F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Carson Perrotti";
+				TargetAttributes = {
+					B5CC935F1C47F5E700E8A8F7 = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = B5CC935B1C47F5E700E8A8F7 /* Build configuration list for PBXProject "CNPPopupControllerExampleSwift" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B5CC93571C47F5E700E8A8F7;
+			productRefGroup = B5CC93611C47F5E700E8A8F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5CC935F1C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5CC935E1C47F5E700E8A8F7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5CC936E1C47F5E700E8A8F7 /* LaunchScreen.storyboard in Resources */,
+				B5CC936B1C47F5E700E8A8F7 /* Assets.xcassets in Resources */,
+				B5CC93691C47F5E700E8A8F7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5CC935C1C47F5E700E8A8F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5CC93661C47F5E700E8A8F7 /* ViewController.swift in Sources */,
+				B5CC93641C47F5E700E8A8F7 /* AppDelegate.swift in Sources */,
+				B5CC93781C47F61F00E8A8F7 /* CNPPopupController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B5CC93671C47F5E700E8A8F7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5CC93681C47F5E700E8A8F7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B5CC936C1C47F5E700E8A8F7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5CC936D1C47F5E700E8A8F7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B5CC93701C47F5E700E8A8F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B5CC93711C47F5E700E8A8F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B5CC93731C47F5E700E8A8F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CNPPopupControllerExampleSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carsonperrotti.CNPPopupControllerExampleSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CNPPopupControllerExampleSwift/CNPPopupControllerExampleSwift-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		B5CC93741C47F5E700E8A8F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = CNPPopupControllerExampleSwift/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.carsonperrotti.CNPPopupControllerExampleSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CNPPopupControllerExampleSwift/CNPPopupControllerExampleSwift-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B5CC935B1C47F5E700E8A8F7 /* Build configuration list for PBXProject "CNPPopupControllerExampleSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5CC93701C47F5E700E8A8F7 /* Debug */,
+				B5CC93711C47F5E700E8A8F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5CC93721C47F5E700E8A8F7 /* Build configuration list for PBXNativeTarget "CNPPopupControllerExampleSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5CC93731C47F5E700E8A8F7 /* Debug */,
+				B5CC93741C47F5E700E8A8F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B5CC93581C47F5E700E8A8F7 /* Project object */;
+}

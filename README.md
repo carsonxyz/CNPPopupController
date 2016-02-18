@@ -14,7 +14,7 @@ Please feel free to contribute to this project, open issues, make suggestions an
 
 ## Installation
 
-Available in [Cocoa Pods](http://cocoapods.org/?q=CNPPopupController)
+Available in [CocoaPods](http://cocoapods.org/?q=CNPPopupController)
 
 `pod 'CNPPopupController'`
 

@@ -90,6 +90,6 @@ CNPPopupController was created by [Carson Perrotti](http://carsonperrotti.com)
 
 **June 14th, 2015 v0.2.0**
 - Completely rewritten. *Started from the bottom, now we're here.*
-- Ther are some minor API changes in v0.2.0. I tried to keep it as close to the last version as possible. See the example project if you need some help getting it set up.
+- There are some minor API changes in v0.2.0. I tried to keep it as close to the last version as possible. See the example project if you need some help getting it set up.
 - Custom view support (You can add anything, as it's contents as long as it is a UIView or subclass of UIView
 - Lots of bug fixes

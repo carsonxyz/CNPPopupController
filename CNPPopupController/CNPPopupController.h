@@ -76,6 +76,7 @@ typedef NS_ENUM(NSInteger, CNPPopupMaskType) {
 @property (nonatomic, assign) BOOL movesAboveKeyboard; // Popup should move up when the keyboard appears (Default yes)
 @property (nonatomic, assign) CGFloat contentVerticalPadding; // Spacing between each vertical element (Default 12.0)
 @property (nonatomic, assign) CGFloat maxPopupWidth; // Maxiumum width that the popup should be (Default 300)
+@property (nonatomic, assign) CGFloat animationDuration; // Duration of presentation animations (Default 0.3s)
 
 // Factory method to help build a default theme
 + (CNPPopupTheme *)defaultTheme;

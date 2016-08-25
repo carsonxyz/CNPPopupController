@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         button.backgroundColor = UIColor.init(colorLiteralRed: 0.46, green: 0.8, blue: 1.0, alpha: 1.0)
         
         button.layer.cornerRadius = 4;
-        button.selectionHandler = { (CNPPopupButton button) -> Void in
+        button.selectionHandler = { button in
             self.popupController.dismissPopupControllerAnimated(true)
             print("Block for button: \(button.titleLabel?.text)")
         }
@@ -91,8 +91,8 @@ class ViewController: UIViewController {
 
 extension ViewController : CNPPopupControllerDelegate {
     
-    func popupController(controller: CNPPopupController, dismissWithButtonTitle title: NSString) {
-        print("Dismissed with button title \(title)")
+    func popupControllerWillDismiss(controller: CNPPopupController!) {
+        print("Popup controller will be dismissed")
     }
     
     func popupControllerDidPresent(controller: CNPPopupController) {

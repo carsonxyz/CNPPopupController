@@ -239,7 +239,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
 - (void)keyboardWithStartFrame:(CGRect)keyboardFrame willHideAfterDuration:(NSTimeInterval)duration withOptions:(UIViewAnimationOptions)options
 {
     [UIView animateWithDuration:duration delay:0.0f options:options animations:^{
-        self.popupView.center = self.maskView.center;
+        self.popupView.center =  [self endingPoint];
     } completion:nil];
 }
 

@@ -24,27 +24,27 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showPopupWithStyle(popupStyle: CNPPopupStyle) {
+    func showPopupWithStyle(_ popupStyle: CNPPopupStyle) {
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        paragraphStyle.alignment = NSTextAlignment.Center
+        paragraphStyle.lineBreakMode = NSLineBreakMode.byWordWrapping
+        paragraphStyle.alignment = NSTextAlignment.center
         
-        let title = NSAttributedString(string: "It's A Popup!", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(24), NSParagraphStyleAttributeName: paragraphStyle])
-        let lineOne = NSAttributedString(string: "You can add text and images", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18), NSParagraphStyleAttributeName: paragraphStyle])
-        let lineTwo = NSAttributedString(string: "With style, using NSAttributedString", attributes: [NSFontAttributeName: UIFont.systemFontOfSize(18), NSForegroundColorAttributeName: UIColor.init(colorLiteralRed: 0.46, green: 0.8, blue: 1.0, alpha: 1.0), NSParagraphStyleAttributeName: paragraphStyle])
+        let title = NSAttributedString(string: "It's A Popup!", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 24), NSParagraphStyleAttributeName: paragraphStyle])
+        let lineOne = NSAttributedString(string: "You can add text and images", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18), NSParagraphStyleAttributeName: paragraphStyle])
+        let lineTwo = NSAttributedString(string: "With style, using NSAttributedString", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18), NSForegroundColorAttributeName: UIColor.init(colorLiteralRed: 0.46, green: 0.8, blue: 1.0, alpha: 1.0), NSParagraphStyleAttributeName: paragraphStyle])
         
-        let button = CNPPopupButton.init(frame: CGRectMake(0, 0, 200, 60))
-        button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        button.titleLabel?.font = UIFont.boldSystemFontOfSize(18)
-        button.setTitle("Close Me", forState: UIControlState.Normal)
+        let button = CNPPopupButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 60))
+        button.setTitleColor(UIColor.white, for: UIControlState())
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.setTitle("Close Me", for: UIControlState())
         
         button.backgroundColor = UIColor.init(colorLiteralRed: 0.46, green: 0.8, blue: 1.0, alpha: 1.0)
         
         button.layer.cornerRadius = 4;
-        button.selectionHandler = { (CNPPopupButton button) -> Void in
-            self.popupController.dismissPopupControllerAnimated(true)
-            print("Block for button: \(button.titleLabel?.text)")
+        button.selectionHandler = { (button) -> Void in
+            self.popupController.dismiss(animated: true)
+            print("Block for button: \(button?.titleLabel?.text)")
         }
         
         let titleLabel = UILabel()
@@ -61,41 +61,41 @@ class ViewController: UIViewController {
         lineTwoLabel.numberOfLines = 0;
         lineTwoLabel.attributedText = lineTwo;
         
-        let customView = UIView.init(frame: CGRectMake(0, 0, 250, 55))
-        customView.backgroundColor = UIColor.lightGrayColor()
+        let customView = UIView.init(frame: CGRect(x: 0, y: 0, width: 250, height: 55))
+        customView.backgroundColor = UIColor.lightGray
         
-        let textField = UITextField.init(frame: CGRectMake(10, 10, 230, 35))
-        textField.borderStyle = UITextBorderStyle.RoundedRect
+        let textField = UITextField.init(frame: CGRect(x: 10, y: 10, width: 230, height: 35))
+        textField.borderStyle = UITextBorderStyle.roundedRect
         textField.placeholder = "Custom view!"
         customView.addSubview(textField)
         
         self.popupController = CNPPopupController(contents:[titleLabel, lineOneLabel, imageView, lineTwoLabel, customView, button])
-        self.popupController.theme = CNPPopupTheme.defaultTheme()
+        self.popupController.theme = CNPPopupTheme.default()
         self.popupController.theme.popupStyle = popupStyle
         self.popupController.delegate = self
-        self.popupController.presentPopupControllerAnimated(true)
+        self.popupController.present(animated: true)
     }
     
     
     // Example action - TODO: replace with yours
-    @IBAction func showPopupCentered(sender: AnyObject) {
-        self.showPopupWithStyle(CNPPopupStyle.Centered)
+    @IBAction func showPopupCentered(_ sender: AnyObject) {
+        self.showPopupWithStyle(CNPPopupStyle.centered)
     }
-    @IBAction func showPopupFormSheet(sender: AnyObject) {
-        self.showPopupWithStyle(CNPPopupStyle.ActionSheet)
+    @IBAction func showPopupFormSheet(_ sender: AnyObject) {
+        self.showPopupWithStyle(CNPPopupStyle.actionSheet)
     }
-    @IBAction func showPopupFullscreen(sender: AnyObject) {
-        self.showPopupWithStyle(CNPPopupStyle.Fullscreen)
+    @IBAction func showPopupFullscreen(_ sender: AnyObject) {
+        self.showPopupWithStyle(CNPPopupStyle.fullscreen)
     }
 }
 
 extension ViewController : CNPPopupControllerDelegate {
     
-    func popupController(controller: CNPPopupController, dismissWithButtonTitle title: NSString) {
+    func popupController(_ controller: CNPPopupController, dismissWithButtonTitle title: NSString) {
         print("Dismissed with button title \(title)")
     }
     
-    func popupControllerDidPresent(controller: CNPPopupController) {
+    func popupControllerDidPresent(_ controller: CNPPopupController) {
         print("Popup controller presented")
     }
     

@@ -91,8 +91,8 @@ class ViewController: UIViewController {
 
 extension ViewController : CNPPopupControllerDelegate {
     
-    func popupController(_ controller: CNPPopupController, dismissWithButtonTitle title: NSString) {
-        print("Dismissed with button title \(title)")
+    func popupControllerWillDismiss(_ controller: CNPPopupController) {
+        print("Popup controller will be dismissed")
     }
     
     func popupControllerDidPresent(_ controller: CNPPopupController) {

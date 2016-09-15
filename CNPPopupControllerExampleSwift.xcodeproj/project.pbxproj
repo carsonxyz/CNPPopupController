@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B55F08E11D8B1E2400C7CFB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B55F08E01D8B1E2400C7CFB0 /* Images.xcassets */; };
 		B5CC93641C47F5E700E8A8F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CC93631C47F5E700E8A8F7 /* AppDelegate.swift */; };
 		B5CC93661C47F5E700E8A8F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CC93651C47F5E700E8A8F7 /* ViewController.swift */; };
 		B5CC93691C47F5E700E8A8F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CC93671C47F5E700E8A8F7 /* Main.storyboard */; };
-		B5CC936B1C47F5E700E8A8F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5CC936A1C47F5E700E8A8F7 /* Assets.xcassets */; };
 		B5CC936E1C47F5E700E8A8F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5CC936C1C47F5E700E8A8F7 /* LaunchScreen.storyboard */; };
 		B5CC93781C47F61F00E8A8F7 /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CC93771C47F61F00E8A8F7 /* CNPPopupController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B55F08E01D8B1E2400C7CFB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B5CC93601C47F5E700E8A8F7 /* CNPPopupControllerExampleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNPPopupControllerExampleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CC93631C47F5E700E8A8F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5CC93651C47F5E700E8A8F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B5CC93681C47F5E700E8A8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B5CC936A1C47F5E700E8A8F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5CC936D1C47F5E700E8A8F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5CC936F1C47F5E700E8A8F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5CC93761C47F61F00E8A8F7 /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 				B5CC93631C47F5E700E8A8F7 /* AppDelegate.swift */,
 				B5CC93651C47F5E700E8A8F7 /* ViewController.swift */,
 				B5CC93671C47F5E700E8A8F7 /* Main.storyboard */,
-				B5CC936A1C47F5E700E8A8F7 /* Assets.xcassets */,
+				B55F08E01D8B1E2400C7CFB0 /* Images.xcassets */,
 				B5CC936C1C47F5E700E8A8F7 /* LaunchScreen.storyboard */,
 				B5CC936F1C47F5E700E8A8F7 /* Info.plist */,
 				B5CC93791C47F72A00E8A8F7 /* CNPPopupControllerExampleSwift-Bridging-Header.h */,
@@ -138,8 +138,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55F08E11D8B1E2400C7CFB0 /* Images.xcassets in Resources */,
 				B5CC936E1C47F5E700E8A8F7 /* LaunchScreen.storyboard in Resources */,
-				B5CC936B1C47F5E700E8A8F7 /* Assets.xcassets in Resources */,
 				B5CC93691C47F5E700E8A8F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

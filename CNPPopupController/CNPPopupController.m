@@ -22,14 +22,15 @@ static inline UIViewAnimationOptions UIViewAnimationCurveToAnimationOptions(UIVi
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UITapGestureRecognizer *backgroundTapRecognizer;
 @property (nonatomic, strong) UIView *popupView;
-@property (nonatomic, strong) NSArray *views;
+@property (nonatomic, strong) NSArray <UIView *> *views;
 @property (nonatomic) BOOL dismissAnimated;
 
 @end
 
 @implementation CNPPopupController
 
-- (instancetype)initWithContents:(NSArray *)contents {
+
+- (instancetype)initWithContents:(NSArray <UIView *> *)contents {
     self = [super init];
     if (self) {
         
@@ -63,6 +64,11 @@ static inline UIViewAnimationOptions UIViewAnimationCurveToAnimationOptions(UIVi
                                                      name:UIApplicationDidChangeStatusBarOrientationNotification
                                                    object:nil];
     }
+    return self;
+}
+
+- (instancetype)init {
+    self = [self initWithContents:@[]];
     return self;
 }
 
@@ -202,10 +208,10 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
 - (void)keyboardWillShow:(NSNotification*)notification
 {
     if (self.theme.movesAboveKeyboard) {
-        CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+        CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
         frame = [self.popupView convertRect:frame fromView:nil];
-        NSTimeInterval duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        NSTimeInterval duration = [(notification.userInfo)[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [(notification.userInfo)[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
         [self keyboardWithEndFrame:frame willShowAfterDuration:duration withOptions:UIViewAnimationCurveToAnimationOptions(curve)];
     }
@@ -227,10 +233,10 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
 - (void)keyboardWillHide:(NSNotification*)notification
 {
     if (self.theme.movesAboveKeyboard) {
-        CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+        CGRect frame = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
         frame = [self.popupView convertRect:frame fromView:nil];
-        NSTimeInterval duration = [[notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-        UIViewAnimationCurve curve = [[notification.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
+        NSTimeInterval duration = [(notification.userInfo)[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+        UIViewAnimationCurve curve = [(notification.userInfo)[UIKeyboardAnimationCurveUserInfoKey] integerValue];
         
         [self keyboardWithStartFrame:frame willHideAfterDuration:duration withOptions:UIViewAnimationCurveToAnimationOptions(curve)];
     }
@@ -374,7 +380,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
 }
 
 - (UIWindow *)applicationWindow {
-    return [[UIApplication sharedApplication] keyWindow];
+    return [UIApplication sharedApplication].keyWindow;
 }
 
 @end

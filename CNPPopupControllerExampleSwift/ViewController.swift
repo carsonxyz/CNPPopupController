@@ -13,7 +13,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var popupController:CNPPopupController = CNPPopupController()
+    var popupController:CNPPopupController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,8 @@ class ViewController: UIViewController {
         
         button.layer.cornerRadius = 4;
         button.selectionHandler = { (button) -> Void in
-            self.popupController.dismiss(animated: true)
-            print("Block for button: \(button?.titleLabel?.text)")
+            self.popupController?.dismiss(animated: true)
+            print("Block for button: \(button.titleLabel?.text)")
         }
         
         let titleLabel = UILabel()
@@ -69,13 +69,13 @@ class ViewController: UIViewController {
         textField.placeholder = "Custom view!"
         customView.addSubview(textField)
         
-        self.popupController = CNPPopupController(contents:[titleLabel, lineOneLabel, imageView, lineTwoLabel, customView, button])
-        self.popupController.theme = CNPPopupTheme.default()
-        self.popupController.theme.popupStyle = popupStyle
-        self.popupController.delegate = self
-        self.popupController.present(animated: true)
+        let popupController = CNPPopupController(contents:[titleLabel, lineOneLabel, imageView, lineTwoLabel, customView, button])
+        popupController.theme = CNPPopupTheme.default()
+        popupController.theme.popupStyle = popupStyle
+        popupController.delegate = self
+        self.popupController = popupController
+        popupController.present(animated: true)
     }
-    
     
     // Example action - TODO: replace with yours
     @IBAction func showPopupCentered(_ sender: AnyObject) {

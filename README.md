@@ -8,7 +8,7 @@
 
 CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions. It includes a many options for controlling how your popup appears and behaves.
 
-Please feel free to contribute to this project, open issues, make suggestions and submit pull-requests. If you use this project in your app, let me know. I'd love to see what you do with it. 
+Please feel free to contribute to this project, open issues, make suggestions and submit pull-requests. If you use this project in your app, let me know. I'd love to see what you do with it.
 
 <p align="center"><img src="https://raw.githubusercontent.com/carsonperrotti/CNPPopupController/master/CNPPopupControllerExample/CNPPopupController.gif"/></p>
 
@@ -30,7 +30,7 @@ Create a popup with custom animations and behaviors. Customizations can also be 
 
 
 `contents` only accepts an array of `UIView` objects.
-					
+
 ## Presentation
 
 `- (void)presentPopupControllerAnimated:(BOOL)flag;`
@@ -39,7 +39,7 @@ Create a popup with custom animations and behaviors. Customizations can also be 
 
 ## Customization
 
-A `CNPPopupTheme` instance can be created and assigned to the `theme` property of a `CNPPopupController` instance. 
+A `CNPPopupTheme` instance can be created and assigned to the `theme` property of a `CNPPopupController` instance.
 
 `@property (nonatomic, strong) UIColor *backgroundColor;`
 
@@ -75,9 +75,13 @@ CNPPopupController was created by [Carson Perrotti](http://carsonperrotti.com)
 
 ##Version History
 
+**September 15, 2016 v0.3.3**
+- Content layout fixes
+- Better swift support
+
 **July 14, 2016 v0.3.2**
 - Fixes an issue where content would not be perfectly centred.
-- Project compatibility fixes to prevent ‘duplicate symbols` errors.
+- Project compatibility fixes to prevent `duplicate symbols` errors.
 - Added property to adjust animation transition duration.
 
 **September 13, 2015 v0.3.1**
@@ -87,13 +91,10 @@ CNPPopupController was created by [Carson Perrotti](http://carsonperrotti.com)
 - Support for iOS 9 and a few bug fixes.
 
 **August 30, 2015 v0.2.3**
-- Lower minimum required OS version to 6.0, since it works there anyway. 
+- Lower minimum required OS version to 6.0, since it works there anyway.
 
 **August 16, 2015 v0.2.2**
 - Bug fix for centering the popup above the keyboard when presented. Thanks to [Nicholas](https://github.com/nicholas) for the proactive help on this one.
-
-**June 24th, 2015 v0.2.1**
-- Bug fix for dismissing on background mask touch.
 
 **June 14th, 2015 v0.2.0**
 - Completely rewritten. *Started from the bottom, now we're here.*

@@ -357,8 +357,10 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
 
 - (CGFloat)popupWidth {
     CGFloat width = self.theme.maxPopupWidth;
-    if ((self.theme.popupStyle == CNPPopupStyleActionSheet && !CNP_IS_IPAD ) || self.theme.popupStyle == CNPPopupStyleFullscreen) {
-        width = self.maskView.bounds.size.width;
+    CGFloat maskViewWidth = self.maskView.bounds.size.width;
+    if ((self.theme.popupStyle == CNPPopupStyleActionSheet && width > maskViewWidth)
+        || self.theme.popupStyle == CNPPopupStyleFullscreen) {
+        width = maskViewWidth;
     }
     return width;
 }

@@ -72,6 +72,10 @@ class ViewController: UIViewController {
         let popupController = CNPPopupController(contents:[titleLabel, lineOneLabel, imageView, lineTwoLabel, customView, button])
         popupController.theme = CNPPopupTheme.default()
         popupController.theme.popupStyle = popupStyle
+        // LFL added settings for custom color and blur
+//        popupController.theme.maskType = .custom
+//        popupController.theme.customMaskColor = UIColor.red
+//        popupController.theme.applyBlurEffect = true
         popupController.delegate = self
         self.popupController = popupController
         popupController.present(animated: true)

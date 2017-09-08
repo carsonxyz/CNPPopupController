@@ -143,7 +143,19 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
         maskBackgroundColor = self.popupView.backgroundColor;
     }
     else {
-        maskBackgroundColor = self.theme.maskType == CNPPopupMaskTypeClear?[UIColor clearColor] : [UIColor colorWithWhite:0.0 alpha:0.7];
+        // set maskBackgroundColor according to maskType
+        switch (self.theme.maskType) {
+            case CNPPopupMaskTypeClear:
+                maskBackgroundColor = [UIColor clearColor];
+                break;
+            case CNPPopupMaskTypeDimmed:
+                maskBackgroundColor = [UIColor colorWithWhite:0.0 alpha:0.7];
+                break;
+            default:
+                maskBackgroundColor = self.theme.customMaskColor;
+                break;
+                
+        }
     }
     self.maskView.backgroundColor = maskBackgroundColor;
 }

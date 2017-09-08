@@ -61,13 +61,15 @@ typedef NS_ENUM(NSInteger, CNPPopupPresentationStyle) {
 // CNPPopupMaskType
 typedef NS_ENUM(NSInteger, CNPPopupMaskType) {
     CNPPopupMaskTypeClear,
-    CNPPopupMaskTypeDimmed
+    CNPPopupMaskTypeDimmed,
+    CNPPopupMaskTypeCustom
 };
 
 NS_ASSUME_NONNULL_BEGIN
 @interface CNPPopupTheme : NSObject
 
 @property (nonatomic, strong) UIColor *backgroundColor; // Background color of the popup content view (Default white)
+@property (nonatomic, strong) UIColor *customMaskColor; // Custom color for CNPPopupMaskTypeCustom
 @property (nonatomic, assign) CGFloat cornerRadius; // Corner radius of the popup content view (Default 4.0)
 @property (nonatomic, assign) UIEdgeInsets popupContentInsets; // Inset of labels, images and buttons on the popup content view (Default 16.0 on all sides)
 @property (nonatomic, assign) CNPPopupStyle popupStyle; // How the popup looks once presented (Default centered)
@@ -76,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL dismissesOppositeDirection; // If presented from a direction, should it dismiss in the opposite? (Defaults to NO. i.e. Goes back the way it came in)
 @property (nonatomic, assign) BOOL shouldDismissOnBackgroundTouch; // Popup should dismiss on tapping on background mask (Default yes)
 @property (nonatomic, assign) BOOL movesAboveKeyboard; // Popup should move up when the keyboard appears (Default yes)
+@property (nonatomic, assign) BOOL applyBlurEffect; // Popup should move up when the keyboard appears (Default yes)
 @property (nonatomic, assign) CGFloat contentVerticalPadding; // Spacing between each vertical element (Default 12.0)
 @property (nonatomic, assign) CGFloat maxPopupWidth; // Maxiumum width that the popup should be (Default 300)
 @property (nonatomic, assign) CGFloat animationDuration; // Duration of presentation animations (Default 0.3s)

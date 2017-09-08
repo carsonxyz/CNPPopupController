@@ -20,6 +20,7 @@ static inline UIViewAnimationOptions UIViewAnimationCurveToAnimationOptions(UIVi
 
 @property (nonatomic, strong) UIWindow *applicationWindow;
 @property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIVisualEffectView *blurEffectView;
 @property (nonatomic, strong) UITapGestureRecognizer *backgroundTapRecognizer;
 @property (nonatomic, strong) UIView *popupView;
 @property (nonatomic, strong) NSArray <UIView *> *views;
@@ -45,6 +46,17 @@ static inline UIViewAnimationOptions UIViewAnimationCurveToAnimationOptions(UIVi
         self.backgroundTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBackgroundTapGesture:)];
         self.backgroundTapRecognizer.delegate = self;
         [self.maskView addGestureRecognizer:self.backgroundTapRecognizer];
+        
+        // Add blur effect view to maskView
+        if (!UIAccessibilityIsReduceTransparencyEnabled()) {
+            UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+            self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+            self.blurEffectView.frame = self.maskView.bounds;
+            self.blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            
+            [self.maskView addSubview:self.blurEffectView];
+        }
+        
         [self.maskView addSubview:self.popupView];
         
         self.theme = [CNPPopupTheme defaultTheme];
@@ -136,6 +148,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
     if (self.theme.popupStyle == CNPPopupStyleActionSheet) {
         self.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromBottom;
     }
+    self.blurEffectView.hidden = !self.theme.applyBlurEffect;
     self.popupView.layer.cornerRadius = self.theme.popupStyle == CNPPopupStyleCentered?self.theme.cornerRadius:0;
     self.popupView.backgroundColor = self.theme.backgroundColor;
     UIColor *maskBackgroundColor;
@@ -275,6 +288,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
     [self applyTheme];
     [self calculateContentSizeThatFits:CGSizeMake([self popupWidth], self.maskView.bounds.size.height) andUpdateLayout:YES];
     self.popupView.center = [self originPoint];
+    
     [self.applicationWindow addSubview:self.maskView];
     self.maskView.alpha = 0;
     [UIView animateWithDuration:flag?self.theme.animationDuration:0.0 animations:^{

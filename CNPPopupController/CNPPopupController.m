@@ -49,7 +49,7 @@ static inline UIViewAnimationOptions UIViewAnimationCurveToAnimationOptions(UIVi
         
         // Add blur effect view to maskView
         if (!UIAccessibilityIsReduceTransparencyEnabled()) {
-            UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+            UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
             self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
             self.blurEffectView.frame = self.maskView.bounds;
             self.blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -148,7 +148,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
     if (self.theme.popupStyle == CNPPopupStyleActionSheet) {
         self.theme.presentationStyle = CNPPopupPresentationStyleSlideInFromBottom;
     }
-    self.blurEffectView.hidden = !self.theme.applyBlurEffect;
+    self.blurEffectView.alpha = self.theme.blurEffectAlpha;
     self.popupView.layer.cornerRadius = self.theme.popupStyle == CNPPopupStyleCentered?self.theme.cornerRadius:0;
     self.popupView.backgroundColor = self.theme.backgroundColor;
     UIColor *maskBackgroundColor;
@@ -450,6 +450,7 @@ CGFloat CNP_UIInterfaceOrientationAngleOfOrientation(UIInterfaceOrientation orie
     defaultTheme.contentVerticalPadding = 16.0f;
     defaultTheme.maxPopupWidth = 300.0f;
     defaultTheme.animationDuration = 0.3f;
+    defaultTheme.blurEffectAlpha = 0.0f;
     return defaultTheme;
 }
 

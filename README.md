@@ -5,6 +5,9 @@
 [![Dependency Status](https://www.versioneye.com/objective-c/cnppopupcontroller/0.2.1/badge.svg?style=flat)](https://www.versioneye.com/objective-c/cnppopupcontroller)
 
 # CNPPopupController
+
+**Version 1.0 is coming** [Click here](https://github.com/carsonperrotti/CNPPopupController/issues/83) to add your feedback.
+
 ## Introduction
 
 CNPPopupController is a simple and versatile class for presenting a custom popup in a variety of fashions. It includes a many options for controlling how your popup appears and behaves.

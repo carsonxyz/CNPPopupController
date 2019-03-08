@@ -6,7 +6,7 @@
 
 # CNPPopupController
 
-**Version 1.0 is coming** [Click here](https://github.com/carsonperrotti/CNPPopupController/issues/83) to add your feedback.
+**THIS PROJECT IS DEPRECATED** I no longer have the time to maintain this project, sorry. I am no longer making any changes to this codebase. Please feel free to fork it, change whatever you want, and publish it anywhere you like. I'll leave this repo open until September 1, 2019 so that you can get what you need.
 
 ## Introduction
 
